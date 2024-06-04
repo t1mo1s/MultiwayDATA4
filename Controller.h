@@ -4,12 +4,13 @@
 #include <QObject>
 #include "Model.h"
 
-class Controller : QObject
+class Controller : public QObject
 {
     Q_OBJECT
 public:
-    Controller(Model *_model);
-    Q_INVOKABLE void setValue(int value);
+    explicit Controller(QObject *parent = nullptr, Model *_model = nullptr);
+
+    void setValue(int value);
 
 private:
     Model *model;

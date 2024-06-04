@@ -8,7 +8,7 @@ SOURCES += \
         Controller.cpp \
         Model.cpp \
         View.cpp \
-        main.cpp \
+        main.cpp
 
 RESOURCES += qml.qrc
 

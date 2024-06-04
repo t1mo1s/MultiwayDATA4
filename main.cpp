@@ -1,11 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
-#include "Model.h"
-#include "View.h"
-#include "Controller.h"
 #include <iostream>
 
+#include "Model.h"
+#include "Controller.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,15 +12,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
-
     QQmlApplicationEngine engine;
-    qmlRegisterType<Controller>("com.example", 1, 0, "Controller");
 
     Model model;
-    Controller controller(&model);
-    View view(&model);
+    Controller controller(nullptr,&model);
 
 
+    controller.setValue(10);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
@@ -30,6 +27,9 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+
+
 
     return app.exec();
 }

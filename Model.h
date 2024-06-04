@@ -10,13 +10,10 @@ class Model : public QObject
 
 public:
     explicit Model(QObject *parent = nullptr);
-    int value() const { return m_value;}
-    int m_value;
-    void printVal();
     void saveValue(int val);
+    int m_value;
 
 signals:
-    void valueChanged(int newValue);
     void notify(int val);
 
 private:
