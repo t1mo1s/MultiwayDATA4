@@ -5,6 +5,7 @@
 
 #include "Model.h"
 #include "Controller.h"
+#include "View.h"
 
 int main(int argc, char *argv[])
 {
@@ -16,7 +17,10 @@ int main(int argc, char *argv[])
 
     Model model;
     Controller controller(nullptr,&model);
+    View view(nullptr);
 
+    QObject::connect(&model, &Model::notify,
+                     &view, &View::update);
 
     controller.setValue(10);
 
