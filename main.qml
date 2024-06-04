@@ -9,6 +9,7 @@ ApplicationWindow {
     Column {
         anchors.centerIn: parent
 
+
         SpinBox {
             id: ageField
             from: 0
@@ -17,6 +18,9 @@ ApplicationWindow {
 
         Button {
             text: "save"
+            onClicked: {
+                controller.setValue(ageField.value)
+            }
         }
     }
 }

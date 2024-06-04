@@ -10,7 +10,7 @@ class Controller : public QObject
 public:
     explicit Controller(QObject *parent = nullptr, Model *_model = nullptr);
 
-    void setValue(int value);
+    Q_INVOKABLE void setValue(int value);
 
 private:
     Model *model;
