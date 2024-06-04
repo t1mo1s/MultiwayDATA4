@@ -3,6 +3,7 @@
 
 #include <QObject>
 
+
 class Model : public QObject
 {
     Q_OBJECT
@@ -12,11 +13,11 @@ public:
     int value() const { return m_value;}
     int m_value;
     void printVal();
-    void setValue(int val);
+    void saveValue(int val);
 
 signals:
     void valueChanged(int newValue);
-    void notify();
+    void notify(int val);
 
 private:
 

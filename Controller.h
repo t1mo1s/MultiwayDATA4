@@ -2,12 +2,17 @@
 #define CONTROLLER_H
 
 #include <QObject>
+#include "Model.h"
 
-class Controller
+class Controller : QObject
 {
     Q_OBJECT
 public:
-    Controller();
+    Controller(Model *_model);
+    Q_INVOKABLE void setValue(int value);
+
+private:
+    Model *model;
 };
 
 #endif // CONTROLLER_H

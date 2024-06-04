@@ -2,12 +2,14 @@
 #include <iostream>
 
 
-View::View(QObject *parent, Model *_model) : QObject{parent},model(_model)
+View::View(QObject *parent) : QObject{parent}
 {
 
 }
 
 
-void View::update(){
+void View::update(int val){
     std::cout << "update called" << std::endl;
+    std::cout << val << std::endl;
+
 }

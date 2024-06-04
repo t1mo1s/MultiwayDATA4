@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include "Model.h"
 #include "View.h"
+#include "Controller.h"
 #include <iostream>
 
 
@@ -14,16 +15,12 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    qmlRegisterType<Controller>("com.example", 1, 0, "Controller");
 
     Model model;
-    View v(nullptr, &model);
+    Controller controller(&model);
+    View view(&model);
 
-    QObject::connect(&model, &Model::notify,
-                     &v, &View::update);
-
-    std::cout << v.model->m_value << std::endl;
-    model.setValue(6);
-    std::cout << v.model->m_value << std::endl;
 
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

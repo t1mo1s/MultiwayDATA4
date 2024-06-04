@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import com.example 1.0
 
 ApplicationWindow {
     width: 640
@@ -8,6 +9,11 @@ ApplicationWindow {
 
     Column {
         anchors.centerIn: parent
+
+        Controller {
+            id: _controller
+        }
+l
 
         SpinBox {
             id: ageField
@@ -18,9 +24,7 @@ ApplicationWindow {
 
         Button {
             text: "save"
-            onClicked: {
-                console.log("Age: ", model.age)
-            }
+            onClicked: Controller.setValue(7);
         }
     }
 
