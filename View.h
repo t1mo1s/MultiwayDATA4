@@ -16,7 +16,7 @@ public slots:
     void update(int val);
 
 signals:
-    void updateView(int value);
+    void updateView(int val);
 
 private:
     QGuiApplication *app;

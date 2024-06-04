@@ -20,12 +20,14 @@ int main(int argc, char *argv[])
     Controller controller(nullptr,&model);
     View view(nullptr);
 
+    engine.rootContext()->setContextProperty("controller", &controller);
+    engine.rootContext()->setContextProperty("view", &view);
+
     QObject::connect(&model, &Model::notify,
                      &view, &View::update);
 
 
-    engine.rootContext()->setContextProperty("controller", &controller);
-    engine.rootContext()->setContextProperty("view", &view);
+
 
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

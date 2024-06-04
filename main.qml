@@ -6,9 +6,19 @@ ApplicationWindow {
     height: 480
     visible: true
 
+    property int updatedValue: 0
+
     Column {
         anchors.centerIn: parent
 
+
+
+        Connections {
+            target: view
+            function onUpdateView(val){
+                updatedValue = val
+            }
+        }
 
         SpinBox {
             id: ageField
@@ -21,6 +31,11 @@ ApplicationWindow {
             onClicked: {
                 controller.setValue(ageField.value)
             }
+        }
+
+        Text {
+            text: "Updated Value: " + updatedValue
+            font.pixelSize: 20
         }
     }
 }
