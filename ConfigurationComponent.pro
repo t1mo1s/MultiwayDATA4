@@ -27,3 +27,8 @@ HEADERS += \
     Controller.h \
     Model.h \
     View.h
+
+
+# Wenn yaml-cpp mit apt installiert wurde (beispielsweise auf Ubuntu)
+INCLUDEPATH += /usr/include/yaml-cpp
+LIBS += -lyaml-cpp

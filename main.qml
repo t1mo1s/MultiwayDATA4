@@ -11,8 +11,6 @@ ApplicationWindow {
     Column {
         anchors.centerIn: parent
 
-
-
         Connections {
             target: view
             function onUpdateView(val){
@@ -37,5 +35,6 @@ ApplicationWindow {
             text: "Updated Value: " + updatedValue
             font.pixelSize: 20
         }
+
     }
 }
