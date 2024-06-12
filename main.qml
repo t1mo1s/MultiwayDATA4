@@ -9,42 +9,51 @@ ApplicationWindow {
 
     property int updatedValue: 0
 
-    Column {
-        anchors.centerIn: parent
+    Row {
+
+        Column {
+            width: 200
+
+            Connections {
+                target: view
+                function onUpdateView(val){
+                    updatedValue = val
+                }
+            }
+
+            SpinBox {
+                id: ageField
+                from: 0
+                to: 100
+            }
+
+            SpinBox {
+                id: yValue
+                from: 0
+                to: 100
+            }
+
+            Button {
+                text: "X"
+                onClicked: {
+                    controller.setValue(ageField.value)
+                    editorCanvas.addRectangle((ageField.value),(yValue.value),50,50)
+                }
+            }
 
 
-
-        Connections {
-            target: view
-            function onUpdateView(val){
-                updatedValue = val
+            Text {
+                text: "Updated Value: " + updatedValue
+                font.pixelSize: 20
             }
         }
+        Column {
 
-        SpinBox {
-            id: ageField
-            from: 0
-            to: 100
-        }
-
-        Button {
-            text: "save"
-            onClicked: {
-                controller.setValue(ageField.value)
-                editorCanvas.addRectangle(100,100,400,100)
+            CustomPaintedItem {
+                id: editorCanvas
+                width: 400
+                height: 400
             }
         }
-
-        Text {
-            text: "Updated Value: " + updatedValue
-            font.pixelSize: 20
-        }
-    }
-
-    CustomPaintedItem {
-        id: editorCanvas
-        width: 800
-        height: 600
-        anchors.centerIn: parent
     }
 }

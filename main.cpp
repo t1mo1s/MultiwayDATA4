@@ -19,17 +19,14 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-
     Model model;
     Controller controller(nullptr,&model);
     View view(nullptr);
 
     engine.rootContext()->setContextProperty("controller", &controller);
     engine.rootContext()->setContextProperty("view", &view);
-
     QObject::connect(&model, &Model::notify,
                      &view, &View::update);
-
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
@@ -37,9 +34,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
-
-
 
     return app.exec();
 }
