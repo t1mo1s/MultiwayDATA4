@@ -4,6 +4,9 @@
 
 View::View(QObject *parent) : QObject{parent}
 {
+    // Register canvas in qml
+
+
     std::cout << "View()" << std::endl;
 
 }

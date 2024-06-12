@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import CustomComponents 1.0
 
 ApplicationWindow {
     width: 640
@@ -30,6 +31,7 @@ ApplicationWindow {
             text: "save"
             onClicked: {
                 controller.setValue(ageField.value)
+                editorCanvas.addRectangle(100,100,400,100)
             }
         }
 
@@ -37,5 +39,12 @@ ApplicationWindow {
             text: "Updated Value: " + updatedValue
             font.pixelSize: 20
         }
+    }
+
+    CustomPaintedItem {
+        id: editorCanvas
+        width: 800
+        height: 600
+        anchors.centerIn: parent
     }
 }
