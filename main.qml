@@ -45,7 +45,7 @@ ApplicationWindow {
             }
 
             Button {
-                text: "create new Rectangle"
+                text: "Create New Item"
                 onClicked: {
                     let x = parseInt(xValue.text)
                     let y = parseInt(yValue.text)
@@ -91,11 +91,35 @@ ApplicationWindow {
                         }
                     }
                 }
+
+                // Footer for adding new items
+                footer: Row {
+                    TextField {
+                        id: newItemText
+                        placeholderText: "Enter new item"
+                        width: parent.width * 0.7
+                        onAccepted: {
+                            if (newItemText.text.trim() !== "") {
+                                itemListModel.append({ name: newItemText.text })
+                                newItemText.text = ""
+                            }
+                        }
+                    }
+
+                    Button {
+                        text: "Add"
+                        onClicked: {
+                            if (newItemText.text.trim() !== "") {
+                                itemListModel.append({ name: newItemText.text })
+                                newItemText.text = ""
+                            }
+                        }
+                    }
+                }
             }
         }
 
         Column {
-
             CustomPaintedItem {
                 id: editorCanvas
                 width: 400
