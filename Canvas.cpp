@@ -3,7 +3,6 @@
 
 Canvas::Canvas(QQuickItem *parent)
 : QQuickPaintedItem(parent)
-
 {}
 
 
