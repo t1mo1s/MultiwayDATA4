@@ -6,6 +6,7 @@
 #include "Model.h"
 #include "Controller.h"
 #include "View.h"
+#include "Canvas.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,8 +14,10 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
     QGuiApplication app(argc, argv);
-    QQmlApplicationEngine engine;
 
+    qmlRegisterType<Canvas>("CustomComponents", 1, 0, "CustomPaintedItem");
+
+    QQmlApplicationEngine engine;
 
     Model model;
     Controller controller(nullptr,&model);
@@ -22,14 +25,8 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("controller", &controller);
     engine.rootContext()->setContextProperty("view", &view);
-
     QObject::connect(&model, &Model::notify,
                      &view, &View::update);
-
-
-
-
-
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
@@ -37,9 +34,6 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
-
-
-
 
     return app.exec();
 }

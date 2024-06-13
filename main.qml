@@ -1,5 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
+import CustomComponents 1.0
 
 ApplicationWindow {
     width: 640
@@ -8,34 +9,98 @@ ApplicationWindow {
 
     property int updatedValue: 0
 
-    Column {
+    ListModel {
+        id: itemListModel
+        ListElement { name: "Item 1" }
+        ListElement { name: "Item 2" }
+        ListElement { name: "Item 3" }
+    }
+
+    Row {
+        spacing: 20
         anchors.centerIn: parent
 
+        Column {
+            width: 200
 
+            Connections {
+                target: view
+                function onUpdateView(val){
+                    updatedValue = val
+                }
+            }
 
-        Connections {
-            target: view
-            function onUpdateView(val){
-                updatedValue = val
+            TextField {
+                id: xValue
+                width: 50
+                placeholderText: "X"
+                inputMethodHints: Qt.ImhDigitsOnly // Ensures only numbers can be input
+            }
+
+            TextField {
+                id: yValue
+                width: 50
+                placeholderText: "Y"
+                inputMethodHints: Qt.ImhDigitsOnly // Ensures only numbers can be input
+            }
+
+            Button {
+                text: "create new Rectangle"
+                onClicked: {
+                    let x = parseInt(xValue.text)
+                    let y = parseInt(yValue.text)
+                    if (!isNaN(x) && !isNaN(y)) {
+                        editorCanvas.addRectangle(x, y, 50, 50)
+                    } else {
+                        console.log("Invalid input")
+                    }
+                }
+            }
+
+            Text {
+                text: "Updated Value: " + updatedValue
+                font.pixelSize: 20
+            }
+
+            // ListView to display the list items
+            ListView {
+                width: 200
+                height: 300
+                model: itemListModel
+
+                delegate: Item {
+                    width: 200
+                    height: 50
+
+                    Rectangle {
+                        width: parent.width - 20
+                        height: parent.height - 20
+                        color: "lightgrey"
+                        border.color: "black"
+
+                        Text {
+                            anchors.centerIn: parent
+                            text: model.name
+                        }
+
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                console.log("Item clicked: " + model.name)
+                            }
+                        }
+                    }
+                }
             }
         }
 
-        SpinBox {
-            id: ageField
-            from: 0
-            to: 100
-        }
+        Column {
 
-        Button {
-            text: "save"
-            onClicked: {
-                controller.setValue(ageField.value)
+            CustomPaintedItem {
+                id: editorCanvas
+                width: 400
+                height: 400
             }
-        }
-
-        Text {
-            text: "Updated Value: " + updatedValue
-            font.pixelSize: 20
         }
     }
 }
