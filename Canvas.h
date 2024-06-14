@@ -30,6 +30,7 @@ protected:
 
 private:
     QList<CustomRectangle> rectangles; // List to store rectangle
+    CustomRectangle *selectedOne;
     QString m_name;
 };
 

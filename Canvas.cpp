@@ -13,8 +13,13 @@ void Canvas::paint(QPainter *painter)
     painter->drawRect(0,0, width(), height());
     // Draw all rectangles
     for (CustomRectangle &customRect : rectangles) {
-        painter->setPen(customRect.pen);
-        painter->setBrush(customRect.brush);
+        if (&customRect != selectedOne){
+            painter->setPen(customRect.pen);
+            painter->setBrush(customRect.brush);
+        } else {
+            painter->setPen(QPen(Qt::red));
+            painter->setBrush(customRect.brush);
+        }
         painter->drawRect(customRect.rect);
     }
 }
@@ -64,11 +69,14 @@ void Canvas::checkIntersect(qreal mouseX, qreal mouseY){
 
         if (mouseX > RectX1 && mouseX < RectX2 && mouseY > RectY1 && mouseY < RectY2) {
             std::cout << "Rectangle clicked!" << std::endl;
+            // selectedOne pointer to the selected rect
+            selectedOne = &rect;
 
+            /*
             // Replace the clicked rectangle with a new one with different properties
             CustomRectangle newRect(rect.rect, QPen(Qt::yellow, 2), QBrush(QColor(250, 250, 250, 0)));
             rectangles.replace(i, newRect);
-
+            */
             // Trigger a repaint
             update();
             break;

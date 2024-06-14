@@ -32,14 +32,14 @@ ApplicationWindow {
 
             TextField {
                 id: xValue
-                width: 50
+                width: 150
                 placeholderText: "X"
                 inputMethodHints: Qt.ImhDigitsOnly // Ensures only numbers can be input
             }
 
             TextField {
                 id: yValue
-                width: 50
+                width: 150
                 placeholderText: "Y"
                 inputMethodHints: Qt.ImhDigitsOnly // Ensures only numbers can be input
             }
