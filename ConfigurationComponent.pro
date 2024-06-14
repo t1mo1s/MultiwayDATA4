@@ -7,6 +7,7 @@ QT += quick
 SOURCES += \
         Canvas.cpp \
         Controller.cpp \
+        CustomRectangle.cpp \
         Model.cpp \
         View.cpp \
         main.cpp
@@ -27,5 +28,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     Canvas.h \
     Controller.h \
+    CustomRectangle.h \
     Model.h \
     View.h

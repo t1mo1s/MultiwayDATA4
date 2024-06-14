@@ -105,7 +105,6 @@ ApplicationWindow {
                             }
                         }
                     }
-
                     Button {
                         text: "Add"
                         onClicked: {
@@ -120,10 +119,27 @@ ApplicationWindow {
         }
 
         Column {
-            CustomPaintedItem {
-                id: editorCanvas
-                width: 400
-                height: 400
+            width: 400
+            height: 400
+
+            Rectangle {
+                width: parent.width
+                height: parent.height
+
+                CustomPaintedItem {
+                    id: editorCanvas
+                    width: parent.width
+                    height: parent.height
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        console.log("Canvas clicked at: " + mouse.x + ", " + mouse.y)
+                        editorCanvas.checkIntersect(mouse.x, mouse.y)
+                        //editorCanvas.addRectangle(mouse.x, mouse.y, 50, 50)
+                    }
+                }
             }
         }
     }
