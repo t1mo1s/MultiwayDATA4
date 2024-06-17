@@ -61,7 +61,8 @@ void Canvas::mousePressEvent(QMouseEvent *event)
     QQuickPaintedItem::mousePressEvent(event);
 }
 
-void Canvas::checkIntersect(qreal mouseX, qreal mouseY){
+void Canvas::checkIntersect(qreal mouseX, qreal mouseY) {
+    bool found = false; // To track if any rectangle was clicked
     for (int i = 0; i < rectangles.size(); ++i) {
         CustomRectangle &rect = rectangles[i];
         qreal RectX1, RectY1, RectX2, RectY2;
@@ -69,17 +70,17 @@ void Canvas::checkIntersect(qreal mouseX, qreal mouseY){
 
         if (mouseX > RectX1 && mouseX < RectX2 && mouseY > RectY1 && mouseY < RectY2) {
             std::cout << "Rectangle clicked!" << std::endl;
-            // selectedOne pointer to the selected rect
             selectedOne = &rect;
-
-            /*
-            // Replace the clicked rectangle with a new one with different properties
-            CustomRectangle newRect(rect.rect, QPen(Qt::yellow, 2), QBrush(QColor(250, 250, 250, 0)));
-            rectangles.replace(i, newRect);
-            */
-            // Trigger a repaint
-            update();
-            break;
+            found = true; // Set the flag to true when a rectangle is clicked
+            break; // Exit the loop since a rectangle was found
         }
     }
-};
+
+    if (!found) {
+        std::cout << "No Rectangle clicked!" << std::endl;
+        selectedOne = nullptr;
+    }
+
+    update();
+}
+
