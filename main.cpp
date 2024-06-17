@@ -5,8 +5,8 @@
 
 #include "Model.h"
 #include "Controller.h"
-#include "View.h"
 #include "Canvas.h"
+#include "ModuleList.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,18 +15,17 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<Canvas>("CustomComponents", 1, 0, "CustomPaintedItem");
+    qmlRegisterType<Canvas>("CustomComponents", 1, 0, "QPainterCanvas");
+    qmlRegisterType<ModuleList>("CustomComponents", 1, 0, "ModuleList");
+    qmlRegisterType<Module>("CustomComponents", 1, 0, "Module");
 
     QQmlApplicationEngine engine;
 
     Model model;
     Controller controller(nullptr,&model);
-    View view(nullptr);
 
     engine.rootContext()->setContextProperty("controller", &controller);
-    engine.rootContext()->setContextProperty("view", &view);
-    QObject::connect(&model, &Model::notify,
-                     &view, &View::update);
+    engine.rootContext()->setContextProperty("model", &model);
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

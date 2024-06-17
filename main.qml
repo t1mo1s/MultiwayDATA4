@@ -7,8 +7,6 @@ ApplicationWindow {
     height: 480
     visible: true
 
-    property int updatedValue: 0
-
     ListModel {
         id: itemListModel
         ListElement { name: "Item 1" }
@@ -24,10 +22,12 @@ ApplicationWindow {
             width: 200
 
             Connections {
-                target: view
+                target: model
+                /*
                 function onUpdateView(val){
                     updatedValue = val
                 }
+                */
             }
 
             TextField {
@@ -55,11 +55,6 @@ ApplicationWindow {
                         console.log("Invalid input")
                     }
                 }
-            }
-
-            Text {
-                text: "Updated Value: " + updatedValue
-                font.pixelSize: 20
             }
 
             // ListView to display the list items
@@ -116,20 +111,34 @@ ApplicationWindow {
                     }
                 }
             }
+
+
         }
 
         Column {
-            width: 400
-            height: 400
-
             Rectangle {
-                width: parent.width
-                height: parent.height
+                width: 400
+                height: 400
 
-                CustomPaintedItem {
+                QPainterCanvas {
                     id: editorCanvas
                     width: parent.width
                     height: parent.height
+
+                }
+
+                ModuleList {
+                    id: m_List
+                    anchors.centerIn: parent
+
+                    modules: [
+                        Module {
+                            name: "testModulEins"
+                        },
+                        Module {
+                            name: "testModulZwei"
+                        }
+                    ]
                 }
 
                 MouseArea {
@@ -137,7 +146,10 @@ ApplicationWindow {
                     onClicked: {
                         console.log("Canvas clicked at: " + mouse.x + ", " + mouse.y)
                         editorCanvas.checkIntersect(mouse.x, mouse.y)
-                        //editorCanvas.addRectangle(mouse.x, mouse.y, 50, 50)
+                        // Access the modules array through the m_List instance
+                        for (let i = 0; i < m_List.modules.length; i++) {
+                            console.log("Module name:", m_List.modules[i].name);
+                        }
                     }
                 }
             }

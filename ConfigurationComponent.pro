@@ -9,7 +9,8 @@ SOURCES += \
         Controller.cpp \
         CustomRectangle.cpp \
         Model.cpp \
-        View.cpp \
+        Module.cpp \
+        ModuleList.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -30,4 +31,5 @@ HEADERS += \
     Controller.h \
     CustomRectangle.h \
     Model.h \
-    View.h
+    Module.h \
+    ModuleList.h
