@@ -119,14 +119,11 @@ ApplicationWindow {
         }
 
         Column {
-            width: 400
-            height: 400
-
             Rectangle {
-                width: parent.width
-                height: parent.height
+                width: 400
+                height: 400
 
-                CustomPaintedItem {
+                QPainterCanvas {
                     id: editorCanvas
                     width: parent.width
                     height: parent.height

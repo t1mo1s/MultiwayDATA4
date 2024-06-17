@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 #endif
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<Canvas>("CustomComponents", 1, 0, "CustomPaintedItem");
+    qmlRegisterType<Canvas>("CustomComponents", 1, 0, "QPainterCanvas");
 
     QQmlApplicationEngine engine;
 
