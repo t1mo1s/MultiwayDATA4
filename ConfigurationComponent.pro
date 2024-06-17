@@ -9,6 +9,7 @@ SOURCES += \
         Controller.cpp \
         CustomRectangle.cpp \
         Model.cpp \
+        RectangleModel.cpp \
         View.cpp \
         main.cpp
 
@@ -30,4 +31,5 @@ HEADERS += \
     Controller.h \
     CustomRectangle.h \
     Model.h \
+    RectangleModel.h \
     View.h
