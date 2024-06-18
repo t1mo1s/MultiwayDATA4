@@ -7,6 +7,7 @@
 #include <mvc/Controller.h>
 #include <viewElements/Canvas.h>
 #include <viewElements/RectangleModel.h>
+#include <utils/Type.h>
 
 int main(int argc, char *argv[])
 {
@@ -19,17 +20,11 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    Model model;
-    Controller controller(nullptr,&model);
-
-
     // rectModel testl
     RectangleModel rectModel(nullptr);
-    rectModel.addRectangle( 5, 10, 50, 50, 1);
-    rectModel.addRectangle( 5, 10, 50, 50, 2);
-    rectModel.printRects();
-    rectModel.removeRect(1);
-    rectModel.printRects();
+
+    //Model model;
+    Controller controller(nullptr,&rectModel);
 
     // add the rectangleModel instance to the qml context
     engine.rootContext()->setContextProperty("rectangleModel", &rectModel);

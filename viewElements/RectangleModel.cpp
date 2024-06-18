@@ -32,19 +32,14 @@ QHash<int, QByteArray> RectangleModel::roleNames() const {
     return roles;
 }
 
-void RectangleModel::addRectangle(qreal x, qreal y, qreal width, qreal height, qreal indx) {
+void RectangleModel::saveRectangle(std::shared_ptr<CustomRectangle> rect) {
     beginInsertRows(QModelIndex(), rectangles.size(), rectangles.size());
-    std::shared_ptr<CustomRectangle> rect = std::make_shared<CustomRectangle>(
-                QRectF(x, y, width, height),
-                QPen(Qt::blue, 2),
-                QBrush(QColor(250, 250, 250,0)),
-                indx);
-    std::cout << "added Rectangle to the model with x: "<<x<<" , y= "<<y<<"\n";
+    std::cout << "added Rectangle to the model"<<"\n"<<std::endl;
     rectangles.append(rect);
     endInsertRows();
 }
 
-void RectangleModel::removeRect(int index) {
+void RectangleModel::deleteRect(qreal index) {
     if (index < 0 || index >= rectangles.size())
         return;
 

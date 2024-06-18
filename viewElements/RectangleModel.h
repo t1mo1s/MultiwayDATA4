@@ -16,14 +16,13 @@ public:
 
     explicit RectangleModel(QObject *parent = nullptr);
 
-
     // need to override this methods because qabstractlsitmodel
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    Q_INVOKABLE void addRectangle(qreal x, qreal y, qreal width, qreal height, qreal indx);
-    Q_INVOKABLE void removeRect(int index);
+    void saveRectangle(std::shared_ptr<CustomRectangle> rect);
+    void deleteRect(qreal index);
     //Q_INVOKABLE void updateRect(int index, int newIndex);
     void printRects();
 

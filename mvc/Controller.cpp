@@ -2,12 +2,17 @@
 #include <viewElements/CustomRectangle.h>
 #include <QDebug>
 
-Controller::Controller(QObject *parent, Model *_model) : QObject(parent), model(_model)
+Controller::Controller(QObject *parent, RectangleModel *_model) : QObject(parent), model(_model)
 {
     qDebug() << "Controller initialized!";
 }
 
-void Controller::addComponent(qreal x, qreal y, Type type, qreal index){
+
+// adding a defined component to the model
+void Controller::addComponent(qreal x, qreal y//, Type type
+                              , qreal index){
+
+    Type type = Type::POWERPACK; // Hardcoded
     std::shared_ptr<CustomRectangle> rectangle;
     switch (type) {
     case Type::POWERPACK:
@@ -32,6 +37,10 @@ void Controller::addComponent(qreal x, qreal y, Type type, qreal index){
         qDebug() << "addComponent in Controller issue, wrong Type input!";
         break;
     }
-
+    model->saveRectangle(rectangle);
 }
 
+// delegating deletion of rectangle to model
+void Controller::removeComponent(qreal index){
+    model->deleteRect(index);
+}

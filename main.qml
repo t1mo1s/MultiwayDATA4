@@ -100,12 +100,12 @@ ApplicationWindow {
 
                     Button {
                         text: "Add Item"
-                        onClicked: rectangleModel.addRectangle(10,10,50,50,++itemCount)
+                        onClicked: controller.addComponent(10,10,++itemCount)
                     }
 
                     Button {
                         text: "Remove Last Item"
-                        onClicked: rectangleModel.removeRect(rectangleModel.rowCount() - 1)
+                        onClicked: controller.removeComponent(rectangleModel.rowCount() - 1)
                     }
                 }
             }
