@@ -1,4 +1,5 @@
 #include "RectangleModel.h"
+#include <iostream>
 
 RectangleModel::RectangleModel(QObject *parent)
     : QAbstractListModel{parent}
@@ -17,6 +18,7 @@ void RectangleModel::addRectangle(qreal x, qreal y, qreal width, qreal height) {
                 QRectF(x, y, width, height),
                 QPen(Qt::blue, 2),
                 QBrush(QColor(250, 250, 250,0)));
+    std::cout << "added Rectangle to the model with x: "<<x<<" , y= "<<y;
     rectangles.append(rect);
     endInsertRows();
 }
@@ -30,10 +32,36 @@ void RectangleModel::removeRect(int index) {
     endRemoveRows();
 }
 
+/*
 void RectangleModel::updateRect(int index, int newIndex) {
     if (index < 0 || index >= rectangles.size())
         return;
 
     rectangles[index]->setIndex(newIndex);
     emit dataChanged(this->index(index), this->index(index), {IndexRole});
+}
+*/
+
+void RectangleModel::printRects(){
+    //iterate over the QList rectangles and print the entries to the console
+    foreach (const std::shared_ptr<CustomRectangle>& rectPtr, rectangles) {
+        std::cout << "Rectangle with Index: " <<rectPtr->index<<"\n"<<std::endl;
+    }
+}
+
+QVariant RectangleModel::data(const QModelIndex &index, int role) const {
+    if (!index.isValid() || index.row() >= rectangles.size())
+        return QVariant();
+
+    const std::shared_ptr<CustomRectangle> rect = rectangles.at(index.row());
+    if (role == IndexRole)
+        return rect->index();
+    // Add other roles handling as needed
+
+    return QVariant();
+}
+
+
+QHash<int, QByteArray> RectangleModel::roleNames() const {
+
 }

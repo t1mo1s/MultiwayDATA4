@@ -2,8 +2,9 @@
 #include <iostream>
 
 Canvas::Canvas(QQuickItem *parent, QObject *_parent)
-: QQuickPaintedItem(parent), QAbstractListModel(_parent)
-{}
+: QQuickPaintedItem(parent)
+{
+}
 
 void Canvas::paint(QPainter *painter)
 {
@@ -48,18 +49,6 @@ QString Canvas::name() const
 {
     std::cout << "getName: " << std::endl;
     return m_name;
-}
-
-void Canvas::mousePressEvent(QMouseEvent *event)
-{
-    std::cout << "mouse pressed at " << event->globalX() << event->globalY() <<  std::endl;
-    for (const CustomRectangle *rect : rectangles) {
-        if (rect->rect.contains(event->pos())) {
-            std::cout << "rectangle clicked" << std::endl;
-            break;
-        }
-    }
-    QQuickPaintedItem::mousePressEvent(event);
 }
 
 void Canvas::checkIntersect(qreal mouseX, qreal mouseY) {

@@ -7,6 +7,7 @@
 #include "Controller.h"
 #include "View.h"
 #include "Canvas.h"
+#include "RectangleModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -23,10 +24,15 @@ int main(int argc, char *argv[])
     Controller controller(nullptr,&model);
     View view(nullptr);
 
+
+    RectangleModel rectModel(nullptr);
+
     engine.rootContext()->setContextProperty("controller", &controller);
     engine.rootContext()->setContextProperty("view", &view);
+
     QObject::connect(&model, &Model::notify,
                      &view, &View::update);
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

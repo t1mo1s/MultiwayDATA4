@@ -11,6 +11,7 @@ SOURCES += \
         Model.cpp \
         RectangleModel.cpp \
         View.cpp \
+        test/*.cpp \
         main.cpp
 
 RESOURCES += qml.qrc

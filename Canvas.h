@@ -7,10 +7,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <CustomRectangle.h>
-#include <QAbstractListModel>
-#include <memory>
 
-class Canvas : public QQuickPaintedItem, QAbstractListModel
+class Canvas : public QQuickPaintedItem
 {
     Q_OBJECT
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
@@ -27,9 +25,6 @@ public:
     Q_INVOKABLE void checkIntersect(double mouseX, double mouseY);
 signals:
     void nameChanged(QString);
-
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
 
 private:
     QList<CustomRectangle *> rectangles; // List to store rectangle
