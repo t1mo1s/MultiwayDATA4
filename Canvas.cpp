@@ -1,7 +1,7 @@
 #include "Canvas.h"
 #include <iostream>
 
-Canvas::Canvas(QQuickItem *parent, QObject *_parent)
+Canvas::Canvas(QQuickItem *parent)
 : QQuickPaintedItem(parent)
 {
 }
@@ -15,13 +15,13 @@ void Canvas::paint(QPainter *painter)
     // Draw all rectangles
     for (CustomRectangle *customRect : rectangles) {
         if (customRect != selectedOne){
-            painter->setPen(customRect->pen);
-            painter->setBrush(customRect->brush);
+            painter->setPen(customRect->pen());
+            painter->setBrush(customRect->brush());
         } else {
             painter->setPen(QPen(Qt::red));
-            painter->setBrush(customRect->brush);
+            painter->setBrush(customRect->brush());
         }
-        painter->drawRect(customRect->rect);
+        painter->drawRect(customRect->rect());
     }
 }
 
@@ -55,7 +55,7 @@ void Canvas::checkIntersect(qreal mouseX, qreal mouseY) {
     bool found = false; // To track if any rectangle was clicked
     for (int i = 0; i < rectangles.size(); ++i) {
         qreal RectX1, RectY1, RectX2, RectY2;
-        rectangles[i]->rect.getCoords(&RectX1, &RectY1, &RectX2, &RectY2);
+        rectangles[i]->rect().getCoords(&RectX1, &RectY1, &RectX2, &RectY2);
 
         if (mouseX > RectX1 && mouseX < RectX2 && mouseY > RectY1 && mouseY < RectY2) {
             std::cout << "Rectangle clicked!" << std::endl;

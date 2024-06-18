@@ -5,7 +5,6 @@
 
 #include "Model.h"
 #include "Controller.h"
-#include "View.h"
 #include "Canvas.h"
 #include "RectangleModel.h"
 
@@ -22,16 +21,13 @@ int main(int argc, char *argv[])
 
     Model model;
     Controller controller(nullptr,&model);
-    View view(nullptr);
-
 
     RectangleModel rectModel(nullptr);
+    rectModel.addRectangle( 5, 10, 50, 50, 1);
+    rectModel.addRectangle( 5, 10, 50, 50, 2);
+    rectModel.printRects();
 
     engine.rootContext()->setContextProperty("controller", &controller);
-    engine.rootContext()->setContextProperty("view", &view);
-
-    QObject::connect(&model, &Model::notify,
-                     &view, &View::update);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

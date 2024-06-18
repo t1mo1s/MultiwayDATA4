@@ -23,12 +23,14 @@ ApplicationWindow {
         Column {
             width: 200
 
+            /*
             Connections {
                 target: view
                 function onUpdateView(val){
                     updatedValue = val
                 }
             }
+            */
 
             TextField {
                 id: xValue

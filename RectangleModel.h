@@ -22,7 +22,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     QHash<int, QByteArray> roleNames() const override;
 
-    void addRectangle(qreal x, qreal y, qreal width, qreal height);
+    void addRectangle(qreal x, qreal y, qreal width, qreal height, qreal indx);
     Q_INVOKABLE void removeRect(int index);
     //Q_INVOKABLE void updateRect(int index, int newIndex);
     void printRects();

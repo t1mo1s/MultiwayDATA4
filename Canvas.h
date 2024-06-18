@@ -14,7 +14,7 @@ class Canvas : public QQuickPaintedItem
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 
 public:
-    explicit Canvas(QQuickItem *parent = nullptr, QObject *_parent = nullptr);
+    explicit Canvas(QQuickItem *parent = nullptr);
 
     void paint(QPainter *painter) override;
     QString name() const;

@@ -10,8 +10,6 @@ SOURCES += \
         CustomRectangle.cpp \
         Model.cpp \
         RectangleModel.cpp \
-        View.cpp \
-        test/*.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -33,4 +31,3 @@ HEADERS += \
     CustomRectangle.h \
     Model.h \
     RectangleModel.h \
-    View.h
