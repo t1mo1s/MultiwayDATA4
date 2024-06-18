@@ -2,7 +2,7 @@
 #define CONTROLLER_H
 
 #include <QObject>
-#include "Model.h"
+#include <mvc/Model.h>
 
 class Controller : public QObject
 {
