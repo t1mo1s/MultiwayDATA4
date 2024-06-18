@@ -49,6 +49,7 @@ void RectangleModel::removeRect(int index) {
         return;
 
     beginRemoveRows(QModelIndex(), index, index);
+    std::cout << " removing rectangle with index: "<<index<<std::endl;
     rectangles.removeAt(index);
     endRemoveRows();
 }

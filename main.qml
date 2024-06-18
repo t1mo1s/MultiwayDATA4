@@ -3,11 +3,12 @@ import QtQuick.Controls 2.15
 import CustomComponents 1.0
 
 ApplicationWindow {
-    width: 640
-    height: 480
+    width: 680
+    height: 500
     visible: true
 
     property int updatedValue: 0
+    property int itemCount: 0
 
     ListModel {
         id: itemListModel
@@ -96,25 +97,15 @@ ApplicationWindow {
 
                 // Footer for adding new items
                 footer: Row {
-                    TextField {
-                        id: newItemText
-                        placeholderText: "Enter new item"
-                        width: parent.width * 0.7
-                        onAccepted: {
-                            if (newItemText.text.trim() !== "") {
-                                itemListModel.append({ name: newItemText.text })
-                                newItemText.text = ""
-                            }
-                        }
-                    }
+
                     Button {
-                        text: "Add"
-                        onClicked: {
-                            if (newItemText.text.trim() !== "") {
-                                itemListModel.append({ name: newItemText.text })
-                                newItemText.text = ""
-                            }
-                        }
+                        text: "Add Item"
+                        onClicked: rectangleModel.addRectangle(10,10,50,50,++itemCount)
+                    }
+
+                    Button {
+                        text: "Remove Last Item"
+                        onClicked: rectangleModel.removeRect(rectangleModel.rowCount() - 1)
                     }
                 }
             }

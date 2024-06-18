@@ -22,10 +22,15 @@ int main(int argc, char *argv[])
     Model model;
     Controller controller(nullptr,&model);
 
+
+    // rectModel test
     RectangleModel rectModel(nullptr);
     rectModel.addRectangle( 5, 10, 50, 50, 1);
     rectModel.addRectangle( 5, 10, 50, 50, 2);
     rectModel.printRects();
+    rectModel.removeRect(1);
+    rectModel.printRects();
+
 
     engine.rootContext()->setContextProperty("rectangleModel", &rectModel);
 
