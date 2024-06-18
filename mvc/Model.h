@@ -10,12 +10,6 @@ class Model : public QObject
 
 public:
     explicit Model(QObject *parent = nullptr);
-    void saveValue(int val);
-    int m_value;
-
-signals:
-    void notify(int val);
-
 private:
 
 };

@@ -1,10 +1,11 @@
 #include "CustomRectangle.h"
 
-CustomRectangle::CustomRectangle(const QRectF &r, const QPen &p, const QBrush &b, qreal idx)
+CustomRectangle::CustomRectangle(const QRectF &r, const QPen &p, const QBrush &b, qreal idx, Type type)
     : _rect(r),
       _pen(p),
       _brush(b),
-      _index(idx)
+      _index(idx),
+      _type(type)
 {
 }
 

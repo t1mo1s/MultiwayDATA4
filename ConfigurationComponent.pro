@@ -8,12 +8,15 @@ QT += quick
 SOURCES += \
     main.cpp \
     $$files(mvc/*.cpp) \
-    $$files(viewElements/*.cpp)
+    $$files(viewElements/*.cpp) \
+    $$files(utils/*.cpp) \
 
 # Collect all the header files
 HEADERS += \
     $$files(mvc/*.h) \
-    $$files(viewElements/*.h)
+    $$files(viewElements/*.h) \
+    $$files(utils/*.h) \
+    utils/Type.h
 
 # Resource files
 RESOURCES += qml.qrc

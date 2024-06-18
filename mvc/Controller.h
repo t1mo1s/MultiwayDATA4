@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <mvc/Model.h>
+#include <utils/Type.h>
 
 class Controller : public QObject
 {
@@ -10,7 +11,8 @@ class Controller : public QObject
 public:
     explicit Controller(QObject *parent = nullptr, Model *_model = nullptr);
 
-    Q_INVOKABLE void setValue(int value);
+    Q_INVOKABLE void addComponent(qreal x, qreal y, Type type, qreal index);
+    // TODO : Q_INVOKABLE void addVehicle();
 
 private:
     Model *model;

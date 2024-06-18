@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     Controller controller(nullptr,&model);
 
 
-    // rectModel test
+    // rectModel testl
     RectangleModel rectModel(nullptr);
     rectModel.addRectangle( 5, 10, 50, 50, 1);
     rectModel.addRectangle( 5, 10, 50, 50, 2);
@@ -31,9 +31,9 @@ int main(int argc, char *argv[])
     rectModel.removeRect(1);
     rectModel.printRects();
 
-
+    // add the rectangleModel instance to the qml context
     engine.rootContext()->setContextProperty("rectangleModel", &rectModel);
-
+    // add the controller instance to the qml context
     engine.rootContext()->setContextProperty("controller", &controller);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

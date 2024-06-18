@@ -5,6 +5,7 @@
 #include <QPen>
 #include <QBrush>
 #include <QObject>
+#include <utils/Type.h>
 
 class CustomRectangle : public QObject {
     Q_OBJECT
@@ -14,7 +15,8 @@ public:
     explicit CustomRectangle(const QRectF &r = QRectF(),
                              const QPen &p = QPen(),
                              const QBrush &b = QBrush(),
-                             qreal idx = 0);
+                             qreal idx = 0,
+                             Type type = Type());
     //getters and setters
     qreal index() const;
     void setIndex(qreal newIndex);
@@ -33,6 +35,7 @@ private:
     QPen _pen;
     QBrush _brush;
     qreal _index;
+    Type _type;
 };
 
 #endif // CUSTOMRECTANGLE_H
