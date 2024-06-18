@@ -6,7 +6,7 @@
 #include <QQuickPaintedItem>
 #include <QPainter>
 #include <QMouseEvent>
-#include <CustomRectangle.h>
+#include <viewElements/CustomRectangle.h>
 
 class Canvas : public QQuickPaintedItem
 {

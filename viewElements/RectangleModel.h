@@ -2,7 +2,7 @@
 #define RECTANGLEMODEL_H
 
 #include <QAbstractListModel>
-#include "CustomRectangle.h"
+#include <viewElements/CustomRectangle.h>
 #include <memory>
 
 class RectangleModel : public QAbstractListModel

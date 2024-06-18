@@ -3,10 +3,10 @@
 #include <QQmlContext>
 #include <iostream>
 
-#include "Model.h"
-#include "Controller.h"
-#include "Canvas.h"
-#include "RectangleModel.h"
+#include <mvc/Model.h>
+#include <mvc/Controller.h>
+#include <viewElements/Canvas.h>
+#include <viewElements/RectangleModel.h>
 
 int main(int argc, char *argv[])
 {
