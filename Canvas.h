@@ -1,5 +1,6 @@
 #ifndef CANVAS_H
 #define CANVAS_H
+
 #include <QList>
 #include <QRectF>
 #include <QQuickPaintedItem>
@@ -13,7 +14,7 @@ class Canvas : public QQuickPaintedItem
     Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
 
 public:
-    Canvas(QQuickItem *parent = nullptr);
+    explicit Canvas(QQuickItem *parent = nullptr);
 
     void paint(QPainter *painter) override;
     QString name() const;
@@ -25,11 +26,8 @@ public:
 signals:
     void nameChanged(QString);
 
-protected:
-    void mousePressEvent(QMouseEvent *event) override;
-
 private:
-    QList<CustomRectangle> rectangles; // List to store rectangle
+    QList<CustomRectangle *> rectangles; // List to store rectangle
     CustomRectangle *selectedOne;
     QString m_name;
 };

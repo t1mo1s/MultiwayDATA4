@@ -23,12 +23,14 @@ ApplicationWindow {
         Column {
             width: 200
 
+            /*
             Connections {
                 target: view
                 function onUpdateView(val){
                     updatedValue = val
                 }
             }
+            */
 
             TextField {
                 id: xValue
@@ -66,7 +68,7 @@ ApplicationWindow {
             ListView {
                 width: 200
                 height: 300
-                model: itemListModel
+                model: rectangleModel
 
                 delegate: Item {
                     width: 200
@@ -80,13 +82,13 @@ ApplicationWindow {
 
                         Text {
                             anchors.centerIn: parent
-                            text: model.name
+                            text: model.index
                         }
 
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
-                                console.log("Item clicked: " + model.name)
+                                console.log("Item clicked: " + model.index)
                             }
                         }
                     }
