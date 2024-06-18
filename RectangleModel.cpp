@@ -39,7 +39,7 @@ void RectangleModel::addRectangle(qreal x, qreal y, qreal width, qreal height, q
                 QPen(Qt::blue, 2),
                 QBrush(QColor(250, 250, 250,0)),
                 indx);
-    std::cout << "added Rectangle to the model with x: "<<x<<" , y= "<<y;
+    std::cout << "added Rectangle to the model with x: "<<x<<" , y= "<<y<<"\n";
     rectangles.append(rect);
     endInsertRows();
 }

@@ -27,6 +27,8 @@ int main(int argc, char *argv[])
     rectModel.addRectangle( 5, 10, 50, 50, 2);
     rectModel.printRects();
 
+    engine.rootContext()->setContextProperty("rectangleModel", &rectModel);
+
     engine.rootContext()->setContextProperty("controller", &controller);
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
