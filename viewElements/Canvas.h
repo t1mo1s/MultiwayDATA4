@@ -27,8 +27,8 @@ signals:
     void nameChanged(QString);
 
 private:
-    QList<CustomRectangle *> rectangles; // List to store rectangle
-    CustomRectangle *selectedOne;
+    QList<std::shared_ptr<CustomRectangle>> rectangles; // List to store rectangle
+    std::shared_ptr<CustomRectangle> selectedOne;
     QString m_name;
 };
 

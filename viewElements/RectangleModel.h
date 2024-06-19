@@ -28,10 +28,6 @@ public:
 
 signals:
     void notify();
-
-
-
-
 private:
     QList<std::shared_ptr<CustomRectangle>> rectangles;
 
