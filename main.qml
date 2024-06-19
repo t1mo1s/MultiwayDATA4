@@ -17,6 +17,13 @@ ApplicationWindow {
         ListElement { name: "Item 3" }
     }
 
+    Connections {
+        target: rectangleModel
+        function onNotify(){
+
+        }
+    }
+
     Row {
         spacing: 20
         anchors.centerIn: parent
@@ -54,6 +61,7 @@ ApplicationWindow {
                     let y = parseInt(yValue.text)
                     if (!isNaN(x) && !isNaN(y)) {
                         editorCanvas.addRectangle(x, y, 50, 50)
+                        controller.addComponent(x, y, x+y)
                     } else {
                         console.log("Invalid input")
                     }
@@ -67,6 +75,7 @@ ApplicationWindow {
 
             // ListView to display the list items
             ListView {
+                id: rectList
                 width: 200
                 height: 300
                 model: rectangleModel
@@ -100,7 +109,10 @@ ApplicationWindow {
 
                     Button {
                         text: "Add Item"
-                        onClicked: controller.addComponent(10,10,++itemCount)
+                        onClicked: {
+                            controller.addComponent(10,10,++itemCount)
+                            editorCanvas.name = "test triggered"
+                        }
                     }
 
                     Button {
@@ -120,6 +132,10 @@ ApplicationWindow {
                     id: editorCanvas
                     width: parent.width
                     height: parent.height
+
+                    onNameChanged: {
+                        console.log("name changed to: "+editorCanvas.name)
+                    }
                 }
 
                 MouseArea {

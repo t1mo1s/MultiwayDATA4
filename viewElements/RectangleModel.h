@@ -26,6 +26,9 @@ public:
     //Q_INVOKABLE void updateRect(int index, int newIndex);
     void printRects();
 
+signals:
+    void notify();
+
 
 
 

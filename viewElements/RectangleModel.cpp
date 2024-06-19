@@ -37,6 +37,7 @@ void RectangleModel::saveRectangle(std::shared_ptr<CustomRectangle> rect) {
     std::cout << "added Rectangle to the model"<<"\n"<<std::endl;
     rectangles.append(rect);
     endInsertRows();
+    emit notify();
 }
 
 void RectangleModel::deleteRect(qreal index) {
