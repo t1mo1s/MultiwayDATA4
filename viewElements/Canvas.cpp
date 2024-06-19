@@ -13,7 +13,7 @@ void Canvas::paint(QPainter *painter)
     painter->setPen(QPen(Qt::blue, 2));
     painter->drawRect(0,0, width(), height());
     // Draw all rectangles
-    for (std::shared_ptr<CustomRectangle> customRect : rectangles) {
+    for (std::shared_ptr<CustomRectangle> customRect : _rectangles) {
         if (customRect != selectedOne){
             painter->setPen(customRect->pen());
             painter->setBrush(customRect->brush());
@@ -34,7 +34,7 @@ void Canvas::addRectangle(qreal x, qreal y, qreal width, qreal height)
                 1,
                 Type::POWERPACK
                 );
-    rectangles.append(rect);
+    _rectangles.append(rect);
     update();
     qDebug() << "Added rectangle: " << x << y << width << height;
 }
@@ -57,15 +57,25 @@ QString Canvas::name() const
     return m_name;
 }
 
+void Canvas::setRectangles(QList<std::shared_ptr<CustomRectangle>> rects)
+{
+    _rectangles = rects;
+}
+
+QList<std::shared_ptr<CustomRectangle>> Canvas::rectangles() const
+{
+    return _rectangles;
+}
+
 void Canvas::checkIntersect(qreal mouseX, qreal mouseY) {
     bool found = false; // To track if any rectangle was clicked
-    for (int i = 0; i < rectangles.size(); ++i) {
+    for (int i = 0; i < _rectangles.size(); ++i) {
         qreal RectX1, RectY1, RectX2, RectY2;
-        rectangles[i]->rect().getCoords(&RectX1, &RectY1, &RectX2, &RectY2);
+        _rectangles[i]->rect().getCoords(&RectX1, &RectY1, &RectX2, &RectY2);
 
         if (mouseX > RectX1 && mouseX < RectX2 && mouseY > RectY1 && mouseY < RectY2) {
             std::cout << "Rectangle clicked!" << std::endl;
-            selectedOne = rectangles[i];
+            selectedOne = _rectangles[i];
             found = true; // Set the flag to true when a rectangle is clicked
             break; // Exit the loop since a rectangle was found
         }
